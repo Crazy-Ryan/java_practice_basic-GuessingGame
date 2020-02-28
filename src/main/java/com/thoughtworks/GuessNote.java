@@ -26,7 +26,7 @@ public class GuessNote {
     }
 
     public boolean inputCheck(String input) {
-        return lengthCheck(input) && rangeCheck(input) && rangeCheck(input);
+        return lengthCheck(input) && rangeCheck(input) && repeatCheck(input);
     }
 
     private boolean lengthCheck(String input) {
