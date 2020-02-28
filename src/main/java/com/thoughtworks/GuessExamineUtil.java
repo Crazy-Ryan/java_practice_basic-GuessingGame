@@ -5,9 +5,9 @@ import java.util.List;
 
 public class GuessExamineUtil {
 
-    public static final int GUESS_COUNT = 4;
-    public static final int GUESS_LOWER_LIMIT = 1;
-    public static final int GUESS_UPPER_LIMIT = 9;
+    private static final int GUESS_COUNT = 4;
+    private static final int GUESS_LOWER_LIMIT = 1;
+    private static final int GUESS_UPPER_LIMIT = 9;
 
 
     public static boolean inputCheck(String input) {
@@ -40,6 +40,23 @@ public class GuessExamineUtil {
             charList.add(currentChar);
         }
         return true;
+    }
+
+    public static String examineGuess(String guess, String answer) {
+        int correctIndexCorrectValueCount = 0;
+        int wrongIndexCorrectValueCount = 0;
+
+        for (int index = 0; index < guess.length(); index++) {
+            char currentGuess = guess.charAt(index);
+            CharSequence currentGuessCS = currentGuess + "";
+            if (answer.contains(currentGuessCS)) {
+                if (answer.indexOf(currentGuess) == index) {
+                    correctIndexCorrectValueCount += 1;
+                } else
+                    wrongIndexCorrectValueCount += 1;
+            }
+        }
+        return correctIndexCorrectValueCount + "A" + wrongIndexCorrectValueCount + "B";
     }
 
 }
