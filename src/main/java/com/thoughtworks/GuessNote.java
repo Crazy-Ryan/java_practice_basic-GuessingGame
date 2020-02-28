@@ -10,7 +10,7 @@ public class GuessNote {
 
     public GuessNote() {
         inputHistory = new ArrayList<>();
-        outputHistory =  new ArrayList<>();
+        outputHistory = new ArrayList<>();
     }
 
     public int getInputCount() {
@@ -25,13 +25,8 @@ public class GuessNote {
         return outputHistory;
     }
 
-    public String inputCheck(String input) {
-        if(lengthCheck(input)&&rangeCheck(input)&&rangeCheck(input)){
-            return input;
-        }
-        else {
-            return null;
-        }
+    public boolean inputCheck(String input) {
+        return lengthCheck(input) && rangeCheck(input) && rangeCheck(input);
     }
 
     private boolean lengthCheck(String input) {
@@ -62,9 +57,12 @@ public class GuessNote {
         return true;
     }
 
-    public static void main(String[] args) {
-        GuessNote guessNote = new GuessNote();
-        System.out.println(guessNote.rangeCheck("1253"));
+    public void addToInputHistory(String input) {
+        inputHistory.add(input);
+    }
+
+    public void addToOutputHistory(String output) {
+        outputHistory.add(output);
     }
 
 }
