@@ -7,25 +7,26 @@ public class App {
     private String answer;
     private int timesOfGuessing;
     private String currentInput;
+    private String currentOutput;
     private GuessHistory guessHistory;
 
     public App() {
         guessHistory = new GuessHistory();
     }
 
-    public String getAnswer() {
+    private String getAnswer() {
         return answer;
     }
 
-    public int getTimesOfGuessing() {
+    private int getTimesOfGuessing() {
         return timesOfGuessing;
     }
 
-    public String getCurrentInput() {
+    private String getCurrentInput() {
         return currentInput;
     }
 
-    public void generateAnswer() {
+    private void generateAnswer() {
         String fileContent = ReadFileUtil.readFile(GuessConstant.ANSWER_PATH);
         if (GuessExamineUtil.inputCheck(fileContent)) {
             this.answer = fileContent;
@@ -34,13 +35,38 @@ public class App {
         }
     }
 
-    public boolean isCorrect(){
-        return GuessExamineUtil.examineGuess(currentInput,this.answer).charAt(0) == GuessConstant.COUNT;
+    private boolean isCorrect() {
+        return GuessExamineUtil.examineGuess(currentInput, this.answer).charAt(0) == GuessConstant.COUNT;
     }
 
-    public void collectInput(){
+    private void collectInput() {
         Scanner scanner = new Scanner(System.in);
         currentInput = scanner.nextLine();
+    }
+
+    private void checkGuess() {
+        try {
+            if (GuessExamineUtil.inputCheck(currentInput)) {
+                currentOutput = GuessExamineUtil.examineGuess(currentInput,answer);
+            }
+            else {
+                throw new WrongFormat();
+            }
+        } catch (Exception e) {
+            currentOutput = "Wrong input";
+        }
+    }
+
+    private void run(){
+        while(timesOfGuessing < GuessConstant.MAX_TIMES_OF_GUESS){
+            collectInput();
+            checkGuess();
+            guessHistory.addToHistory(currentInput,currentOutput);
+            if(isCorrect()){
+                break;
+            }
+        }
+
     }
 
     public static void main(String[] args) {
