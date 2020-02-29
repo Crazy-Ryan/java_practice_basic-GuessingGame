@@ -6,9 +6,12 @@ import java.util.List;
 public class GuessExamineUtil {
 
     public static boolean inputCheck(String input) {
-        return lengthCheck(input) && rangeCheck(input) && repeatCheck(input);
+        return nullCheck(input) && lengthCheck(input) && rangeCheck(input) && repeatCheck(input);
     }
 
+    private static boolean nullCheck(String input) {
+        return input != null;
+    }
 
     private static boolean lengthCheck(String input) {
         return GuessConstant.COUNT == input.length();
