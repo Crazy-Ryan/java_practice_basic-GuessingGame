@@ -21,14 +21,17 @@ public class App {
         return currentInput;
     }
 
-    public String generateAnswer() {
+    public void generateAnswer() {
         String fileContent = ReadFileUtil.readFile(GuessConstant.ANSWER_PATH);
-        if (GuessExamineUtil.inputCheck(fileContent)){
-            return fileContent;
+        if (GuessExamineUtil.inputCheck(fileContent)) {
+            this.answer = fileContent;
+        } else {
+            this.answer = new AnswerGenerator().generateRandomAnswer();
         }
-        else {
-            return new AnswerGenerator().generateRandomAnswer();
-        }
+    }
+
+    public boolean isCorrect(){
+        return GuessExamineUtil.examineGuess(currentInput,this.answer).charAt(0) == GuessConstant.COUNT;
     }
 
     public static void main(String[] args) {
