@@ -2,6 +2,7 @@ package com.thoughtworks;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class ReadFileUtil {
@@ -17,7 +18,7 @@ public class ReadFileUtil {
                 }
             }
             return result.toString();
-        } catch (Exception e) {
+        } catch (IOException e) {
             return null;
         }
     }
