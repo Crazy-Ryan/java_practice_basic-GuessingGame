@@ -12,7 +12,9 @@ public class ReadFileUtil {
         ) {
             int byteRead;
             while ((byteRead = input.read()) != -1) {
-                result.append((char) byteRead);
+                if(byteRead > 0xf){
+                    result.append((char) byteRead);
+                }
             }
             return result.toString();
         } catch (Exception e) {
