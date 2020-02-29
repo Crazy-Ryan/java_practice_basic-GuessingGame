@@ -1,6 +1,8 @@
 package com.thoughtworks;
 
-public class AnswerGenerator {
+import java.util.Random;
+
+public class AnswerGenerator implements Answer {
     private String answer;
 
     public AnswerGenerator() {
@@ -18,7 +20,14 @@ public class AnswerGenerator {
         this.answer = answer;
     }
 
+    @Override
     public void generateRandomAnswer() {
-
+        Random random = new Random();
+        StringBuilder ans = new StringBuilder();
+        for (int index = 0; index < GuessConstant.COUNT; index++) {
+            ans.append(GuessConstant.LOWER_LIMIT
+                    + random.nextInt(GuessConstant.UPPER_LIMIT - GuessConstant.LOWER_LIMIT + 1));
+        }
+        this.answer = ans.toString();
     }
 }
