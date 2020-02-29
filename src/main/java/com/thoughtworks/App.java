@@ -37,13 +37,12 @@ public class App {
     }
 
     private boolean isCorrect() {
-        return GuessExamineUtil.examineGuess(currentInput, this.answer).charAt(0) == GuessConstant.COUNT;
+        return currentOutput.charAt(0) ==  GuessConstant.COUNT + 48;
     }
 
     private void collectInput() {
         Scanner scanner = new Scanner(System.in);
         currentInput = scanner.nextLine();
-//        System.out.println(currentInput);
     }
 
     private void checkGuess() {
@@ -61,16 +60,18 @@ public class App {
 
     public void run() {
         generateAnswer();
-        System.out.println("Please input your guess");
+        System.out.println("Please input your guess:");
         while (timesOfGuessing < GuessConstant.MAX_TIMES_OF_GUESS) {
             collectInput();
             checkGuess();
             guessHistory.addToHistory(currentInput, currentOutput);
+            System.out.print(guessHistory);
             if (isCorrect()) {
-                break;
+                System.out.println("Congratulations, you win!");
+                return;
             }
-            System.out.println(guessHistory);
         }
+        System.out.println("Unfortunately, you have no chance, the answer is " + answer);
     }
 
     public static void main(String[] args) {
