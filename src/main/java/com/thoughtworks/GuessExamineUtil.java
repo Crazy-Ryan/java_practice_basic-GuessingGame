@@ -5,25 +5,20 @@ import java.util.List;
 
 public class GuessExamineUtil {
 
-    private static final int GUESS_COUNT = 4;
-    private static final int GUESS_LOWER_LIMIT = 1;
-    private static final int GUESS_UPPER_LIMIT = 9;
-
-
     public static boolean inputCheck(String input) {
         return lengthCheck(input) && rangeCheck(input) && repeatCheck(input);
     }
 
     private static boolean lengthCheck(String input) {
-        return GUESS_COUNT == input.length();
+        return GuessConstant.COUNT == input.length();
     }
 
     private static boolean rangeCheck(String input) {
         for (int index = 0; index < input.length(); index++) {
-            if (input.charAt(index) - 48 < GUESS_LOWER_LIMIT) {
+            if (input.charAt(index) - 48 < GuessConstant.LOWER_LIMIT) {
                 return false;
             }
-            if (input.charAt(index) - 48 > GUESS_UPPER_LIMIT) {
+            if (input.charAt(index) - 48 > GuessConstant.UPPER_LIMIT) {
                 return false;
             }
         }
