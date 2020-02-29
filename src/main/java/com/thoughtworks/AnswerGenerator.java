@@ -17,4 +17,8 @@ public class AnswerGenerator {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    public void generateRandomAnswer() {
+
+    }
 }
