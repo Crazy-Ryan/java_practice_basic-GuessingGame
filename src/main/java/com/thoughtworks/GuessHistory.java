@@ -32,4 +32,13 @@ public class GuessHistory {
         inputCount += 1;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder ioList = new StringBuilder();
+        for (int index = 0; index < inputCount; index++) {
+            ioList.append(inputHistory.get(index)).append(" ")
+                    .append(outputHistory.get(index)).append("\n");
+        }
+        return ioList.toString();
+    }
 }
