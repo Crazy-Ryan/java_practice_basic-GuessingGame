@@ -1,12 +1,16 @@
 package com.thoughtworks;
 
+import java.util.Scanner;
+
 public class App {
 
     private String answer;
     private int timesOfGuessing;
     private String currentInput;
+    private GuessHistory guessHistory;
 
     public App() {
+        guessHistory = new GuessHistory();
     }
 
     public String getAnswer() {
@@ -32,6 +36,11 @@ public class App {
 
     public boolean isCorrect(){
         return GuessExamineUtil.examineGuess(currentInput,this.answer).charAt(0) == GuessConstant.COUNT;
+    }
+
+    public void collectInput(){
+        Scanner scanner = new Scanner(System.in);
+        currentInput = scanner.nextLine();
     }
 
     public static void main(String[] args) {
