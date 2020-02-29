@@ -11,6 +11,7 @@ public class App {
     private GuessHistory guessHistory;
 
     public App() {
+        timesOfGuessing = 0;
         guessHistory = new GuessHistory();
     }
 
@@ -42,34 +43,38 @@ public class App {
     private void collectInput() {
         Scanner scanner = new Scanner(System.in);
         currentInput = scanner.nextLine();
+//        System.out.println(currentInput);
     }
 
     private void checkGuess() {
         try {
             if (GuessExamineUtil.inputCheck(currentInput)) {
-                currentOutput = GuessExamineUtil.examineGuess(currentInput,answer);
+                timesOfGuessing++;
+                currentOutput = GuessExamineUtil.examineGuess(currentInput, answer);
+            } else {
+                throw new WrongFormatException();
             }
-            else {
-                throw new WrongFormat();
-            }
-        } catch (Exception e) {
+        } catch (WrongFormatException e) {
             currentOutput = "Wrong input";
         }
     }
 
-    private void run(){
-        while(timesOfGuessing < GuessConstant.MAX_TIMES_OF_GUESS){
+    public void run() {
+        generateAnswer();
+        System.out.println("Please input your guess");
+        while (timesOfGuessing < GuessConstant.MAX_TIMES_OF_GUESS) {
             collectInput();
             checkGuess();
-            guessHistory.addToHistory(currentInput,currentOutput);
-            if(isCorrect()){
+            guessHistory.addToHistory(currentInput, currentOutput);
+            if (isCorrect()) {
                 break;
             }
+            System.out.println(guessHistory);
         }
-
     }
 
     public static void main(String[] args) {
         App guessGame = new App();
+        guessGame.run();
     }
 }
