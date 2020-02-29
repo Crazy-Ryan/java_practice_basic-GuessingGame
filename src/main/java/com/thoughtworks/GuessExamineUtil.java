@@ -9,6 +9,7 @@ public class GuessExamineUtil {
         return lengthCheck(input) && rangeCheck(input) && repeatCheck(input);
     }
 
+
     private static boolean lengthCheck(String input) {
         return GuessConstant.COUNT == input.length();
     }
