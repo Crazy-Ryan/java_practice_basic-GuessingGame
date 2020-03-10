@@ -1,5 +1,10 @@
 package com.thoughtworks;
 
+import com.thoughtworks.constant.GuessConstant;
+import com.thoughtworks.exception.WrongFormatException;
+import com.thoughtworks.tools.GuessExamineUtil;
+import com.thoughtworks.tools.ReadFileUtil;
+
 import java.util.Scanner;
 
 public class App {

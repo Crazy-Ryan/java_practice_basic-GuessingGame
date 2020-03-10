@@ -1,4 +1,6 @@
-package com.thoughtworks;
+package com.thoughtworks.tools;
+
+import com.thoughtworks.constant.GuessConstant;
 
 import java.util.ArrayList;
 import java.util.List;

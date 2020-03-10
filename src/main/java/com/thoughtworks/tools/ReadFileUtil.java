@@ -1,4 +1,4 @@
-package com.thoughtworks;
+package com.thoughtworks.tools;
 
 import java.io.File;
 import java.io.FileInputStream;

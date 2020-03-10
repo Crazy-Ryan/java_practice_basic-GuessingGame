@@ -1,5 +1,7 @@
 package com.thoughtworks;
 
+import com.thoughtworks.constant.GuessConstant;
+
 import java.util.Random;
 
 public class AnswerGenerator implements Answer {
